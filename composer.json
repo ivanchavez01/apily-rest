@@ -1,0 +1,19 @@
+{
+    "name": "ichavez/apily-rest",
+    "description": "Permite generar una Api Rest de forma rapida y sencilla.\u001b[D\u001b",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Chavez",
+            "email": "ichavez9001@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ApilyRest": "src/"
+        }
+    }
+}
