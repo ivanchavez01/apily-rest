@@ -1,6 +1,6 @@
 {
     "name": "ichavez/apily-rest",
-    "description": "Permite generar una Api Rest de forma rapida y sencilla.\u001b[D\u001b",
+    "description": "Permite generar una Api Rest de forma rapida y sencilla.",
     "type": "library",
     "license": "MIT",
     "authors": [
