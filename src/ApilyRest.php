@@ -2,6 +2,7 @@
 namespace ApilyRest;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class ApilyRest
 {
@@ -24,10 +25,17 @@ class ApilyRest
     {
         Route::prefix('api')
             ->middleware(["api"])
+            ->namespace("\ApilyRest\Http\Controller")
             ->group(function () {
                 foreach ($this->models as $model) {
-                    Route::resource(strtolower($model), 'Api\ApilyRestCrudController');
+                    Route::resource(Str::snake($model, "-"), 'ApilyRestCrudController');
                 }
             });
+
+        Route::get('/api/endpoints', function() {
+           foreach ($this->models as $model) {
+               echo Str::snake($model, "-")."<br>";
+           }
+        });
     }
 }

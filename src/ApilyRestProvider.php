@@ -21,6 +21,5 @@ class ApilyRestProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/apily.php' => config_path('apily.php')
         ]);
-        
     }
 }
