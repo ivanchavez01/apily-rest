@@ -6,14 +6,13 @@ use Illuminate\Support\Str;
 
 class ApilyRest
 {
-    private $modelPath = "app";
     protected $models = [];
 
     public function readModels()
     {
         $files = scandir(app_path());
         foreach ($files as $file) {
-            if (strpos($file, ".php") !== FALSE) {
+            if (strpos($file, ".php") !== false) {
                 $this->models[] = str_replace(".php", "", $file);
             }
         }
@@ -28,14 +27,22 @@ class ApilyRest
             ->namespace("\ApilyRest\Http\Controller")
             ->group(function () {
                 foreach ($this->models as $model) {
-                    Route::resource(Str::snake($model, "-"), 'ApilyRestCrudController');
+                    $realModel = Str::snake($model, "-");
+                   
+                    if ($realModel != "user") {
+                        Route::resource($realModel, 'ApilyRestCrudController');
+                    }
                 }
             });
 
-        Route::get('/api/endpoints', function() {
-           foreach ($this->models as $model) {
-               echo Str::snake($model, "-")."<br>";
-           }
+        Route::get('/api/endpoints', function () {
+            foreach ($this->models as $model) {
+                $realModel = Str::snake($model, "-");
+                   
+                if ($realModel != "user") {
+                    echo Str::snake($model, "-")."<br>";
+                }
+            }
         });
     }
 }
