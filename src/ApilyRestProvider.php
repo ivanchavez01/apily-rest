@@ -1,7 +1,6 @@
 <?php
 namespace ApilyRest;
 
-use ApilyRest\Facade\ApilyRest;
 use Illuminate\Support\ServiceProvider;
 
 class ApilyRestProvider extends ServiceProvider

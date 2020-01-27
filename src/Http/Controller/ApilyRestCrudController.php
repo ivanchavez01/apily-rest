@@ -11,8 +11,10 @@ class ApilyRestCrudController
     public function __construct()
     {
         $this->model = Str::studly($this->determineModel());
-        $namespace = 'App\\'.$this->model;
-        $this->modelI = new $namespace();
+        if ($this->model !== '') {
+            $namespace = 'App\\'.$this->model;
+            $this->modelI = new $namespace();
+        }
     }
 
     public function index()
@@ -51,8 +53,10 @@ class ApilyRestCrudController
     {
         $uri = str_replace(url("/"), "", url()->current());
         $uriSplits = explode("/", $uri);
-        $model = $uriSplits[2];
+        if(count($uriSplits) > 1) {
+            $model = $uriSplits[2];
 
-        return Str::slug($model);
+            return Str::slug($model);
+        }
     }
 }
